@@ -1,0 +1,115 @@
+﻿@using ServiceLayer.ViewModels.IdentityViewModels
+@model ManagUserInfoViewModel
+
+@{
+	Layout = null;
+}
+
+<div class="row">
+	<div class="col-12">
+		<div class="ui-boxs">
+			<div class="ui-box">
+				<div class="ui-box-item ui-box-white">
+					<div class="ui-box-item-desc p-0">
+
+						<form method="post" enctype="multipart/form-data">
+							<div class="row m-2">
+								<div class="col-6">
+									<div class="form-group">
+										<label asp-for="PhoneNumber"></label>
+										<input type="text" class="form-control" asp-for="PhoneNumber">
+									</div>
+
+								</div>
+								<div class="col-6">
+									<div class="form-group">
+										<label asp-for="IsShowPhoneNumber"></label>
+										<input type="checkbox" class="form-check-input" asp-for="IsShowPhoneNumber">
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="form-group">
+										<label asp-for="EmailAddress"></label>
+										<input type="text" class="form-control" asp-for="EmailAddress">
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="form-group">
+										<label asp-for="IsShowEmailAddress"></label>
+										<input type="checkbox" class="form-check-input" asp-for="IsShowEmailAddress">
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="form-group">
+										<label asp-for="Adderss"></label>
+										<input type="text" class="form-control" asp-for="Adderss">
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="form-group">
+										<label asp-for="IsShowAdderss"></label>
+										<input type="checkbox" class="form-check-input" asp-for="IsShowAdderss">
+									</div>
+								</div>
+								<div class="col-12">
+									<div class="form-group">
+										<label asp-for="Description"></label>
+										<textarea rows="3" type="text" class="form-control" asp-for="Description"></textarea>
+									</div>
+								</div>
+
+
+								<div class="col-12">
+									<div class="form-group">
+										<label asp-for="CodeMeli"></label>
+										<input type="text" class="form-control" asp-for="CodeMeli">
+									</div>
+								</div>
+								<div class="col-12">
+									<div class="form-group">
+										<label asp-for="ShabaNumber"></label>
+										<input type="text" class="form-control" asp-for="ShabaNumber">
+									</div>
+								</div>
+								<div class="col-12">
+									<div class="form-group">
+										<label asp-for="BankCartNumber"></label>
+										<input type="text" class="form-control" asp-for="BankCartNumber">
+									</div>
+								</div>
+
+								<hr/>
+
+								<div class="col-12">
+									<div class="form-group">
+										<label asp-for="BankCartImage"></label>
+										<img src="/appdata/user/bankCards/@Model.BankCartImage" width="250" />
+									</div>
+								</div>
+
+								<div class="col-12">
+									<div class="form-group">
+										<label asp-for="CartMeliImage"></label>
+										<img src="/appdata/user/cartMelis/@Model.CartMeliImage" width="250" />
+									</div>
+								</div>
+
+								<div class="col-12">
+									<div class="form-group">
+										<label asp-for="Logo"></label>
+										<img src="/appdata/user/logo/@Model.Logo" width="250" />
+									</div>
+								</div>
+
+
+							</div>
+
+
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

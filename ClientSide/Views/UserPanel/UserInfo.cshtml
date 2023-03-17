@@ -1,0 +1,284 @@
+﻿@using ServiceLayer.ViewModels.IdentityViewModels
+@model ManagUserInfoViewModel
+@{
+	ViewData["Title"] = "اطلاعات کاربری";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+	<div class="dashboard">
+		<div class="container-fluid">
+			<div class="row">
+				<partial name="_UserPanelSidebar" />
+				<div class="col-lg-9">
+					<div class="content-box" style="padding:40px 20px;">
+						<div class="row">
+							<div class="col-12">
+								<div class="ui-boxs">
+									<div class="ui-box">
+										<div class="ui-box-item ui-box-white">
+											<div class="ui-box-item-title">
+												<div class="d-flex justify-content-between align-items-center">
+													<h4 class="fw-bold">
+														اطلاعات بیشتر
+													</h4>
+												</div>
+											</div>
+											<div class="ui-box-item-desc p-0">
+
+												<form method="post" enctype="multipart/form-data">
+													<input hidden asp-for="UserInfoId" />
+													<input hidden asp-for="BankCartImage" />
+													<input hidden asp-for="CartMeliImage" />
+													<input hidden asp-for="Logo" />
+													<div class="row m-2">
+														<div class="col-6">
+															<div class="form-group">
+																<label asp-for="PhoneNumber"></label>
+																<input type="text" class="form-control" asp-for="PhoneNumber">
+																<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+															</div>
+								
+														</div>
+														<div class="col-6">
+															<div class="form-group">
+																<label asp-for="IsShowPhoneNumber"></label>
+																<input type="checkbox" class="form-check-input" asp-for="IsShowPhoneNumber">
+															</div>
+														</div>
+														<div class="col-6">
+															<div class="form-group">
+																<label asp-for="EmailAddress"></label>
+																<input type="text" class="form-control" asp-for="EmailAddress">
+																<span asp-validation-for="EmailAddress" class="text-danger"></span>
+															</div>
+														</div>
+														<div class="col-6">
+															<div class="form-group">
+																<label asp-for="IsShowEmailAddress"></label>
+																<input type="checkbox" class="form-check-input" asp-for="IsShowEmailAddress">
+															</div>
+														</div>
+														<div class="col-6">
+															<div class="form-group">
+																<label asp-for="Adderss"></label>
+																<input type="text" class="form-control" asp-for="Adderss">
+																<span asp-validation-for="Adderss" class="text-danger"></span>
+															</div>
+														</div>
+														<div class="col-6">
+															<div class="form-group">
+																<label asp-for="IsShowAdderss"></label>
+																<input type="checkbox" class="form-check-input" asp-for="IsShowAdderss">
+															</div>
+														</div>
+														<div class="col-12">
+															<div class="form-group">
+																<label asp-for="Description"></label>
+																<textarea rows="3" type="text" class="form-control" asp-for="Description"></textarea>
+																<span asp-validation-for="Description" class="text-danger"></span>
+															</div>
+														</div>
+
+
+														<div class="col-12">
+															<div class="form-group">
+																<label asp-for="CodeMeli"></label>
+																<input type="text" class="form-control" asp-for="CodeMeli">
+																<span asp-validation-for="CodeMeli" class="text-danger"></span>
+															</div>
+														</div>
+														<div class="col-12">
+															<div class="form-group">
+																<label asp-for="ShabaNumber"></label>
+																<input type="text" class="form-control" asp-for="ShabaNumber">
+																<span asp-validation-for="ShabaNumber" class="text-danger"></span>
+															</div>
+														</div>
+														<div class="col-12">
+															<div class="form-group">
+																<label asp-for="BankCartNumber"></label>
+																<input type="text" class="form-control" asp-for="BankCartNumber">
+																<span asp-validation-for="BankCartNumber" class="text-danger"></span>
+															</div>
+														</div>
+
+														<div class="col-6">
+															<div class="form-group">
+																<label asp-for="BankCartImage"></label>
+																<div data-url="@Url.Action("UploadBankCart", "UserPanel")" class="dropzone" id="bankCartImage">
+																	<div class="fallback">
+																		<input name="files" type="file" multiple />
+																	</div>
+																	<div class="dz-message text-primary">
+																		<i class="fa fa-upload"></i>
+																		<span>کاربر عزیز اسکن کارت بانکی خود را انتخاب کنید</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+
+														<div class="col-6">
+															<div class="form-group">
+																<label asp-for="CartMeliImage"></label>
+																<div data-url="@Url.Action("UploadCartMeli", "UserPanel")" class="dropzone" id="cartMeliImage">
+																	<div class="fallback">
+																		<input name="files" type="file" multiple />
+																	</div>
+																	<div class="dz-message text-primary">
+																		<i class="fa fa-upload"></i>
+																		<span>کاربر عزیز اسکن کارت ملی خود را انتخاب کنید</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+
+														<div class="col-6">
+															<div class="form-group">
+																<label asp-for="Logo"></label>
+																<div data-url="@Url.Action("UploadUserLogo", "UserPanel")" class="dropzone" id="logoImage">
+																	<div class="fallback">
+																		<input name="files" type="file" multiple />
+																	</div>
+																	<div class="dz-message text-primary">
+																		<i class="fa fa-upload"></i>
+																		<span>کاربر عزیز لوگو خود را انتخاب کنید</span>
+																	</div>
+																</div>
+															</div>
+														</div>
+
+
+														<div class="col-12">
+															<button type="submit" class="btn btn-success" id="SubmitBtn">ارسال</button>
+														</div>
+													</div>
+								
+
+												</form>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end dashboard -->
+</div>
+
+
+														@section Scripts{
+	<partial name="_ValidationScriptsPartial"></partial>
+
+															<script>
+		function myParamName() {
+			return "files";
+		}
+		Dropzone.options.bankCartImage = {
+			url: $("#bankCartImage").attr("data-url"),
+			//autoProcessQueue: false,
+			paramName: function () {
+				console.log(myParamName());
+				return myParamName();
+			}, // The name that will be used to transfer the file
+			uploadMultiple: true,
+			parallelUploads: 1,
+			init: function () {
+				this.on("sendingmultiple",
+					function (file) {
+						$("#SubmitBtn").prop("disabled", true);
+					});
+				this.on("queuecomplete",
+					function (file) {
+						$("#SubmitBtn").prop("disabled", false);
+					});
+				this.on("successmultiple",
+					function (file, response) {
+						if (response.status === "success") {
+							$("#BankCartImage").val(response.data);
+						}
+						else {
+							swal("Error", "عملیات با خطا مواجه شد .", "error");
+						}
+					});
+				this.on("maxfilesreached",
+					function (file) {
+						this.removeEventListeners();
+					});
+			},
+		};
+
+
+		Dropzone.options.cartMeliImage = {
+			url: $("#cartMeliImage").attr("data-url"),
+			//autoProcessQueue: false,
+			paramName: function () {
+				return myParamName();
+			}, // The name that will be used to transfer the file
+			uploadMultiple: true,
+			parallelUploads: 1,
+			init: function () {
+				this.on("sendingmultiple",
+					function (file) {
+						$("#SubmitBtn").prop("disabled", true);
+					});
+				this.on("queuecomplete",
+					function (file) {
+						$("#SubmitBtn").prop("disabled", false);
+					});
+				this.on("successmultiple",
+					function (file, response) {
+						if (response.status === "success") {
+							$("#CartMeliImage").val(response.data);
+						}
+						else {
+							swal("Error", "عملیات با خطا مواجه شد .", "error");
+						}
+					});
+				this.on("maxfilesreached",
+					function (file) {
+						this.removeEventListeners();
+					});
+			},
+		};
+
+		Dropzone.options.logoImage = {
+			url: $("#logoImage").attr("data-url"),
+			//autoProcessQueue: false,
+			paramName: function () {
+				console.log(myParamName());
+				return myParamName();
+			}, // The name that will be used to transfer the file
+			uploadMultiple: true,
+			parallelUploads: 1,
+			init: function () {
+				this.on("sendingmultiple",
+					function (file) {
+						$("#SubmitBtn").prop("disabled", true);
+					});
+				this.on("queuecomplete",
+					function (file) {
+						$("#SubmitBtn").prop("disabled", false);
+					});
+				this.on("successmultiple",
+					function (file, response) {
+						if (response.status === "success") {
+							$("#Logo").val(response.data);
+						}
+						else {
+							swal("Error", "عملیات با خطا مواجه شد .", "error");
+						}
+					});
+				this.on("maxfilesreached",
+					function (file) {
+						this.removeEventListeners();
+					});
+			},
+		};
+															</script>
+														}

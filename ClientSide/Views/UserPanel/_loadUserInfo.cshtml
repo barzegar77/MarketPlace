@@ -1,0 +1,10 @@
+﻿@using ServiceLayer.ViewModels.IdentityViewModels
+@model UserInfoForUserPanelViewModel
+<form method="post" id="frm-Data" >
+    <input hidden asp-for="UserId" />
+    <div class="form-group">
+        <label asp-for="DispalyName"></label>
+        <input type="text" class="form-control" asp-for="DispalyName">
+        <span asp-validation-for="DispalyName"></span>
+    </div>
+</form>
