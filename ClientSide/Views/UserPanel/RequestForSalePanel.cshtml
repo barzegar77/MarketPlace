@@ -1,8 +1,9 @@
 ﻿@using ServiceLayer.ViewModels.StoreViewModels
 @model ManageSellerViewModel
 @{
-    ViewData["Title"] = "درخواست پنل فروشندگی";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "درخواست پنل فروشندگی";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	int request = ViewBag.StatusSeller;
 }
 
 <div class="content">
@@ -25,32 +26,58 @@
 												</div>
 											</div>
 											<div class="ui-box-item-desc p-0">
-
-										<div class="row m-3">
-													<div class="alert alert-primary text-center" role="alert">
-														<p>لطفا قبل از درخواست پنل فروشندگی اطلاعات کاربری خود را تکمیل کنید</p>
+												@if(request == -1)
+												{
+													<div class="row m-3">
+														<div class="alert alert-primary text-center" role="alert">
+															<p>لطفا قبل از درخواست پنل فروشندگی اطلاعات کاربری خود را تکمیل کنید</p>
+														</div>
 													</div>
-										</div>
-												<form method="post" enctype="multipart/form-data">
+													<form method="post" enctype="multipart/form-data">
 
-													<div class="row m-4">
-														<div class="col-12">
-															<div class="form-group">
-																<label>توضیحات خود را جهت همکاری با تیزهوشان ارائه دهید</label>
-																<textarea type="text" class="form-control" asp-for="Description"></textarea>
-																<span asp-validation-for="Description" class="text-danger"></span>
+														<div class="row m-4">
+															<div class="col-12">
+																<div class="form-group">
+																	<label>توضیحات خود را جهت همکاری با تیزهوشان ارائه دهید</label>
+																	<textarea type="text" class="form-control" asp-for="Description"></textarea>
+																	<span asp-validation-for="Description" class="text-danger"></span>
+																</div>
+
 															</div>
 
-														</div>
-							
 
-														<div class="col-12">
-															<button type="submit" class="btn btn-success" id="SubmitBtn">ارسال درخواست</button>
+															<div class="col-12">
+																<button type="submit" class="btn btn-success" id="SubmitBtn">ارسال درخواست</button>
+															</div>
+														</div>
+
+
+													</form>
+												}
+												@if(request == 1)
+												{
+													<div class="row m-3">
+														<div class="alert alert-info text-center" role="alert">
+															<p>کاربر گرامی درخواست شما در حال پیگیری است لطفا برای اطلاعات بیشتر با پشتیبانی تماس بگیرید</p>
 														</div>
 													</div>
-
-
-												</form>
+												}
+												@if (request == 3)
+												{
+													<div class="row m-3">
+														<div class="alert alert-danger text-center" role="alert">
+															<p>کاربر گرامی متاسفانه درخواست شما رد شده است. برای اطلاعات بیشتر میتوانید با پشتیبانی تماس بگیرید</p>
+														</div>
+													</div>
+												}
+												@if (request == 2)
+												{
+													<div class="row m-3">
+														<div class="alert alert-success text-center" role="alert">
+															<p>کاربر گرامی درخواست شما با موفقیت تایید شده است</p>
+														</div>
+													</div>
+												}
 
 											</div>
 										</div>

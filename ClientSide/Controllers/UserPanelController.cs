@@ -95,6 +95,7 @@ namespace ClientSide.Controllers
 
 		public IActionResult RequestForSalePanel()
 		{
+			ViewBag.StatusSeller = _storeService.GetSellerStatusByPhoneNumber(User.Identity.Name);
 			return View();
 		}
 		[HttpPost]
@@ -113,14 +114,35 @@ namespace ClientSide.Controllers
 				}
 			}
 			TempData["error"] = "خطا در برقراری ارتباط با سرور";
+			ViewBag.StatusSeller = _storeService.GetSellerStatusByPhoneNumber(User.Identity.Name);
 			return View();
 		}
 
 
+		public IActionResult ProductList(int pageId = 1, string search = "")
+		{
+			int userId = _identityService.GetUserIdByPhoneNumber(User.Identity.Name);
+			var productList = _storeService.GetProductListForSeller(pageId, search, userId);
+			return View(productList);
+		}
 
-		#region dropzone
 
-		public IActionResult UploadBankCart(List<IFormFile> files)
+		public IActionResult CreateProduct()
+		{
+			ViewBag.listCategoris = _storeService.GetSubCategoriesListItems();
+			return View();
+		}
+
+		[HttpPost]
+		public IActionResult CreateProduct(ManageProductBySellerViewModel model)
+		{
+			return View();
+		}
+
+
+        #region dropzone
+
+        public IActionResult UploadBankCart(List<IFormFile> files)
 		{
 			if (files.Count() > 0)
 			{
@@ -157,8 +179,20 @@ namespace ClientSide.Controllers
 			return Json(new { status = "error", message = "خطا" });
 		}
 
-		#endregion
+
+        public IActionResult UploadProductIndexImage(List<IFormFile> files)
+        {
+            if (files.Count() > 0)
+            {
+                string path = "\\appdata\\product\\img\\";
+                List<string> fileNames = _fileUploader.UploadFile(files, path);
+                return Json(new { status = "success", data = fileNames.FirstOrDefault() });
+            }
+            return Json(new { status = "error", message = "خطا" });
+        }
+
+        #endregion
 
 
-	}
+    }
 }

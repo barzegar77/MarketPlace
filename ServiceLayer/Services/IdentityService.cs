@@ -1,5 +1,6 @@
 ﻿using DataLayer.Context;
 using DataLayer.Models.Identity;
+using Microsoft.EntityFrameworkCore;
 using ServiceLayer.PublicClasses;
 using ServiceLayer.Services.Interfaces;
 using ServiceLayer.ViewModels.BaseViewModels;
@@ -11,14 +12,16 @@ namespace ServiceLayer.Services
     {
         private readonly ApplicationDbContext _context;
         private readonly ISmsSender _smsSender;
+		private readonly IStoreService _storeService;
 
-
-        public IdentityService(ApplicationDbContext context,
-            ISmsSender smsSender)
+		public IdentityService(ApplicationDbContext context,
+            ISmsSender smsSender,
+            IStoreService storeService)
         {
             _context = context;
             _smsSender = smsSender;
-        }
+			_storeService = storeService;
+		}
 
 
 
@@ -203,13 +206,24 @@ namespace ServiceLayer.Services
 
 		public UserPanelSideBarViewModel GetUserPanelSideBar(string phoneNumber)
         {
-            return _context.Users.Where(x => x.PhoneNumber == phoneNumber)
-                .Select(x => new UserPanelSideBarViewModel
-                {
-                    AvatarName = x.Avatar,
-                    DisplayName = x.DisplayName,
-                }).FirstOrDefault();
-        }
+            var user = _context.Users.Include(x => x.Seller).Where(x => x.PhoneNumber == phoneNumber);
+            int requestStatus = _storeService.GetSellerStatusByPhoneNumber(phoneNumber);
+            if(requestStatus == 2)
+			{
+                return user.Select(x => new UserPanelSideBarViewModel
+				  {
+					  AvatarName = x.Avatar,
+					  DisplayName = x.DisplayName,
+					  IsSeller = true
+				  }).FirstOrDefault();
+			}
+			return user.Select(x => new UserPanelSideBarViewModel
+			{
+				AvatarName = x.Avatar,
+				DisplayName = x.DisplayName,
+				IsSeller = false
+			}).FirstOrDefault();
+		}
 
 
         public string GetDisplayNameByPhoneNumber(string phone)

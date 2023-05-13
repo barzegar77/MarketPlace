@@ -1,0 +1,46 @@
+﻿@using ServiceLayer.ViewModels.StoreViewModels
+@model ManageSellerViewModel
+@{
+    ViewData["Title"] = "ویرایش فروشنده";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+	<div class="col-xl-9 mx-auto">
+		<h6 class="mb-0 text-uppercase">ویرایش فروشنده</h6>
+		<hr>
+		<div class="card border-top border-0 border-4 border-info">
+			<div class="card-body">
+				<div class="border p-4 rounded">
+					<div class="card-title d-flex align-items-center">
+						<div>
+							<i class="bx bxs-user me-1 font-22 text-info"></i>
+						</div>
+						<h5 class="mb-0 text-info">ویرایش فروشنده</h5>
+					</div>
+					<hr>
+					<form asp-action="UpdateSeller" method="post" class="row g-3">
+						<input hidden asp-for="Id" />
+						<div class="col-md-12">
+							<label asp-for="Request" class="form-label"></label>
+							<select asp-for="Request" class="form-control">
+								<option value="1">در حال بررسی</option>
+								<option value="2">تایید شده</option>
+								<option value="3">رد شده</option>
+							</select>
+						</div>
+	
+						<div class="col-12">
+							<label class="form-label">توضیحات</label>
+							<textarea asp-for="Description" class="form-control"  rows="3"></textarea>
+						</div>
+		
+						<div class="col-12">
+							<button type="submit" class="btn btn-primary px-5">ویرایش</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

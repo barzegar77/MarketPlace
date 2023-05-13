@@ -1,0 +1,65 @@
+﻿@using DataLayer.Models.Store
+@model List<ProductCategory>
+@{
+    ViewData["Title"] = "لیست دسته بندی ها";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+
+    <div class="card-header">
+        <div class="col-sm-12 col-md-6">
+            <div class="col-6 pb-3">
+                <a href="javascript:void(0); " onclick="CreateCategory()" class="btn btn-success waves-effect waves-light">
+                    افزودن دسته جدید
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table mb-0 table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">نام دسته</th>
+                    <th scope="col">نام والد</th>
+                    <th scope="col">عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int counter = 1;
+                }
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@counter</th>
+                        <td>@item.Title</td>
+                        <td>@(item.Parent != null ? item.Parent.Title: "...")</td>
+                        <td>
+                            <a href="" class="btn btn-warning">
+                                ویرایش
+                            </a>
+
+                        </td>
+                    </tr>
+                    counter++;
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+        }
+        )
+    </script>
+}
+

@@ -1,0 +1,97 @@
+﻿@using ServiceLayer.ViewModels.StoreViewModels
+@using ServiceLayer.ViewModels.BaseViewModels
+@model BaseFilterViewModel<ListProductForSellerViewModel>
+@{
+    ViewData["Title"] = "لیست محصولات";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content">
+    <div class="dashboard">
+        <div class="container-fluid">
+            <div class="row">
+                <partial name="_UserPanelSidebar" />
+                <div class="col-lg-9">
+                    <div class="content-box" style="padding:40px 20px;">
+
+                        <div class="col-2 pb-3">
+                            <a asp-controller="UserPanel" asp-action="CreateProduct" class="btnx btnx-default waves-effect waves-light">
+                                <i class="bi bi-plus"></i>
+                                افزودن محصول جدید
+                            </a>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-12">
+                                <div class="ui-box">
+                                    <div class="ui-box-item ui-box-white">
+                                        <div class="ui-box-item-title">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h4 class="fw-bold">
+                                                    لیست محصولات شما
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        
+                                        @if(Model.Entities.Count() == 0)
+                                        {
+                                            <div class="row m-3">
+                                                <div class="alert alert-primary text-center" role="alert">
+                                                    <p>فروشنده عزیز شما هنوز محصولی را برای فروش قرار نداده اید.</p>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="ui-box-item-desc">
+                                                <div class="product-list-row">
+
+                                                    @foreach (var product in Model.Entities)
+                                                    {
+                                                        <div class="product-row">
+                                                            <a href="#">
+                                                                <div class="product-row-desc">
+                                                                    <div class="product-row-desc-item">
+                                                                        <div class="product-row-img">
+                                                                            <img src="/appdata/product/img/@product.DafaultImage" alt="@product.FaTitle"
+                                                                                 class="" width="100">
+                                                                        </div>
+                                                                        <div class="product-row-title">
+                                                                            <h6>
+                                                                                @product.FaTitle
+                                                                                <br />
+                                                                                @product.EnTitle
+                                                                            </h6>
+                                                                            <div class="product-price">
+                                                                                <p>@product.DefaultPrice تومان</p>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="product-row-icon">
+                                                                        <a href=""><i class="bi bi-trash"></i></a>
+                                                                        <a href=""><i class="bi bi-cart-plus"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end dashboard -->
+</div>
+
+
+

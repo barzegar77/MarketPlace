@@ -1,0 +1,49 @@
+﻿@using DataLayer.Models.Store
+@model ProductCategory
+@{
+    Layout = null;
+}
+
+
+<div class="row">
+	<div class="col-12">
+		<div class="ui-boxs">
+			<div class="ui-box">
+				<div class="ui-box-item ui-box-white">
+					<div class="ui-box-item-desc p-0">
+
+						<form method="post" id="frm-Data">
+							<div class="row m-2">
+								<div class="col-12">
+									<div class="form-group">
+										<label>عنوان دسته</label>
+										<input type="text" class="form-control" asp-for="Title">
+									</div>
+
+								</div>
+								<div class="col-12">
+									<div class="form-group">
+										<label >والد دسته</label>
+										<select class="form-select" asp-for="ParentId" asp-items="@ViewBag.ParentCategories">
+											<option value="0">--انتخاب والد--</option>
+											</select>
+									</div>
+								</div>
+
+								<div class="col-12">
+									<div class="form-group">
+										<label>ایکون دسته</label>
+										<input type="text" class="form-control" asp-for="IconName">
+									</div>
+								</div>
+							</div>
+
+
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

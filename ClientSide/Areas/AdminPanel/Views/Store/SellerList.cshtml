@@ -52,7 +52,7 @@
                             }
                                    @if(item.Request == 2)
                             {
-                                <p class="text-seuccess">تایید شده</p>
+                                <p class="text-success">تایید شده</p>
                             }
                             @if (item.Request == 3)
                             {
@@ -61,7 +61,7 @@
                         </td>
                         <td>@item.CreateDate</td>
                         <td>
-                            <a href="" class="btn btn-warning">
+                            <a asp-action="UpdateSeller" asp-route-id="@item.Id" class="btn btn-warning">
                                 ویرایش
                             </a>
 

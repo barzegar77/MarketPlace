@@ -1,3 +1,4 @@
+using ClientSide.Hubs;
 using DataLayer.Context;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
@@ -47,6 +48,8 @@ builder.Services.AddScoped<ISmsSender, SmsSender>();
 builder.Services.AddScoped<IFileUploader, FileUploader>();
 builder.Services.AddScoped<IStoreService, StoreService>();
 
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -76,10 +79,16 @@ app.UseEndpoints(endpoints =>
       pattern: "{controller=Home}/{action=Index}/{id?}"
     );
 
+    endpoints.MapHub<ChatHub>("/hubs/chat");
+
 });
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+//app.MapHub<UserHub>("/hubs/user");
+
 
 app.Run();

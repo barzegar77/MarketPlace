@@ -1,0 +1,190 @@
+﻿@using ServiceLayer.ViewModels.StoreViewModels
+@model ManageProductBySellerViewModel
+@{
+    ViewData["Title"] = "ایجاد محصول";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+	<div class="dashboard">
+		<div class="container-fluid">
+			<div class="row">
+				<partial name="_UserPanelSidebar" />
+				<div class="col-lg-9">
+					<div class="content-box" style="padding:40px 20px;">
+						<div class="row">
+							<div class="col-12">
+								<div class="ui-boxs">
+									<div class="ui-box">
+										<div class="ui-box-item ui-box-white">
+											<div class="ui-box-item-title">
+												<div class="d-flex justify-content-between align-items-center">
+													<h4 class="fw-bold">
+														ایجاد محصول جدید
+													</h4>
+												</div>
+											</div>
+											<div class="ui-box-item-desc p-0">
+                                                <form method="post" class="p-4">
+                                                    <div class="row">
+                                                        <div class="form-group col-6">
+                                                            <label asp-for="FaTitle"></label>
+                                                            <input type="text" class="form-control" asp-for="FaTitle">
+                                                            <span asp-validation-for="FaTitle"></span>
+                                                        </div>
+                                                        <div class="form-group col-6">
+                                                            <label asp-for="EnTitle"></label>
+                                                            <input type="text" class="form-control" asp-for="EnTitle">
+                                                            <span asp-validation-for="EnTitle"></span>
+                                                        </div>
+                                                        <div class="form-group col-12">
+                                                            <label asp-for="CategoryId"></label>
+                                                            <select class="form-control" asp-for="CategoryId" asp-items="@ViewBag.listCategoris">
+                                                                <option value="0">--انتخاب دسته بندی--</option>
+                                                            </select>
+                                                            <span asp-validation-for="CategoryId"></span>
+                                                        </div>
+
+                                                        <div class="form-group col-12">
+                                                            <label asp-for="ProductFeatures"></label>
+                                                            <textarea rows="3" type="text" id="editor1" class="form-control" asp-for="ProductFeatures"></textarea>
+                                                            <span asp-validation-for="ProductFeatures"></span>
+                                                        </div>
+
+                                                        <div class="form-group col-12">
+                                                            <label asp-for="IndexImage1"></label>
+                                                            <div data-url="@Url.Action("UploadProductIndexImage", "UserPanel")" class="dropzone" id="IndexImage1">
+                                                                <div class="fallback">
+                                                                    <input name="files" type="file" multiple />
+                                                                </div>
+                                                                <div class="dz-message text-primary">
+                                                                    <i class="fa fa-upload"></i>
+                                                                    <span>کاربر عزیز لطفا عکس نمونه محصولتان را آپلود کنید</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="form-group col-6">
+                                                            <label asp-for="Tags"></label><small class="text-info">(لطفا کلمات کلیدی را با کاما ، از هم جدا کنید)</small>
+                                                            <input type="text" class="form-control" asp-for="Tags">
+                                                            <span asp-validation-for="Tags"></span>
+                                                        </div>
+
+
+                                                        <div class="form-group col-12">
+                                                            <label asp-for="ShortDescripton"></label>
+                                                            <textarea rows="3" type="text" id="editor2" class="form-control" asp-for="ShortDescripton"></textarea>
+                                                            <span asp-validation-for="ShortDescripton"></span>
+                                                        </div>
+
+                                                        <div class="form-group col-12">
+                                                            <label asp-for="Descripton"></label>
+                                                            <textarea rows="10" type="text" id="editor3" class="form-control" asp-for="Descripton"></textarea>
+                                                            <span asp-validation-for="Descripton"></span>
+                                                        </div>
+
+
+                                                        <hr/>
+                                                        <p class="text-info">
+                                                            کاربر عزیز برای ایجاد محصول شما باید قیمت پیش فرضی را حتما داشته باشید اما میتوانید چند قیمت را برای یک محصول در ادامه داشته باشید
+                                                        </p>
+
+                                                        <div class="form-group col-6">
+                                                            <label asp-for="Lable"></label>
+                                                            <input type="text" class="form-control" asp-for="Lable">
+                                                            <span asp-validation-for="Lable"></span>
+                                                        </div>
+                                                        <div class="form-group col-6">
+                                                            <label asp-for="Price"></label>
+                                                            <input type="text" class="form-control" asp-for="Price">
+                                                            <span asp-validation-for="Price"></span>
+                                                        </div>
+
+                                                        <div class="form-group col-6">
+                                                            <label asp-for="Weight"></label>
+                                                            <input type="text" class="form-control" asp-for="Weight">
+                                                            <span asp-validation-for="Weight"></span>
+                                                        </div>
+                                                        <div class="form-group col-6">
+                                                            <label asp-for="Count"></label>
+                                                            <input type="text" class="form-control" asp-for="Count">
+                                                            <span asp-validation-for="Count"></span>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <button type="submit" class="btn btn-success" id="SubmitBtn">ثبت محصول</button>
+                                                    </div>
+                                                </form>
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end dashboard -->
+</div>
+
+@section Scripts{
+
+    <partial name="_ValidationScriptsPartial"></partial>
+
+    <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('editor1');
+        CKEDITOR.replace('editor2');
+        CKEDITOR.replace('editor3');
+    </script>
+
+
+
+    <script>
+        function myParamName() {
+            return "files";
+        }
+        Dropzone.options.IndexImage = {
+            url: $("#IndexImage").attr("data-url"),
+            //autoProcessQueue: false,
+            paramName: function () {
+                return myParamName();
+            }, // The name that will be used to transfer the file
+            uploadMultiple: true,
+            parallelUploads: 1,
+            init: function () {
+                this.on("sendingmultiple",
+                    function (file) {
+                        $("#SubmitBtn").prop("disabled", true);
+                    });
+                this.on("queuecomplete",
+                    function (file) {
+                        $("#SubmitBtn").prop("disabled", false);
+                    });
+                this.on("successmultiple",
+                    function (file, response) {
+                        if (response.status === "success") {
+                            $("#IndexImage1").val(response.data);
+                        }
+                        else {
+                            swal("Error", "عملیات با خطا مواجه شد .", "error");
+                        }
+                    });
+                this.on("maxfilesreached",
+                    function (file) {
+                        this.removeEventListeners();
+                    });
+            },
+        };
+    </script>
+
+    }
+
+
+

@@ -60,6 +60,16 @@
     </div>
 
     <header>
+        <div class="container">
+            <div class="row">
+                <p class="text-dark">
+                    تعداد نفرات آنلاین :
+                    <span id="viewsCounter"></span>
+                    نفر
+                </p>
+          
+            </div>
+</div>
         <div class="container-fluid">
             <div class="row">
                 <div class="header-contact d-lg-block d-none col-12">
@@ -1177,6 +1187,10 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/myFunctions.js"></script>
     <partial name="_SiteMessage" />
+
+     <!-- signalr -->
+    <script src="~/js/signalr.js"></script>
+    <script src="~/js/signalrfunctions.js"></script>
 
     @RenderSection("Scripts" , false)
 

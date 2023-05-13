@@ -28,6 +28,14 @@
 </head>
 
 <body class="rtl">
+
+	<div>
+		<input id="message1" type="hidden" value="@TempData["success"]" />
+		<input id="message2" type="hidden" value="@TempData["error"]" />
+		<input id="message3" type="hidden" value="@TempData["info"]" />
+		<input id="message4" type="hidden" value="@TempData["warning"]" />
+	</div>
+
 	<!--wrapper-->
 	<div class="wrapper">
 		<!--sidebar wrapper -->
@@ -74,8 +82,12 @@
 						<div class="menu-title">مدیریت فروشگاه</div>
 					</a>
 					<ul>
+
 						<li>
 							<a asp-controller="Store" asp-action="SellerList"><i class="bx bx-left-arrow-alt"></i>لیست فروشندگان</a>
+						</li>
+						<li>
+							<a asp-controller="Store" asp-action="CategoryList"><i class="bx bx-left-arrow-alt"></i>مدیریت دسته های محصولی</a>
 						</li>
 					</ul>
 				</li>
@@ -619,6 +631,7 @@
 
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="/js/myFunctions.js"></script>
+	<partial name="_SiteMessage" />
 
 	@RenderSection("Scripts",false)
 
