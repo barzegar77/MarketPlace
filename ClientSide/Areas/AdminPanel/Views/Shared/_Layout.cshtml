@@ -91,6 +91,20 @@
 						</li>
 					</ul>
 				</li>
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon">
+							<i class='bx bx-user-pin'></i>
+						</div>
+						<div class="menu-title">پشتیبانی</div>
+					</a>
+					<ul>
+
+						<li>
+							<a asp-controller="Support" asp-action="Chat"><i class="bx bx-left-arrow-alt"></i>پشتیبانی آنلاین</a>
+						</li>
+					</ul>
+				</li>
 			</ul>
 			<!--end navigation-->
 		</div>
@@ -632,6 +646,10 @@
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="/js/myFunctions.js"></script>
 	<partial name="_SiteMessage" />
+
+	<!-- signalr -->
+	<script src="~/js/signalr.js"></script>
+
 
 	@RenderSection("Scripts",false)
 

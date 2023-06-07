@@ -47,6 +47,7 @@ builder.Services.AddScoped<IIdentityService, IdentityService>();
 builder.Services.AddScoped<ISmsSender, SmsSender>();
 builder.Services.AddScoped<IFileUploader, FileUploader>();
 builder.Services.AddScoped<IStoreService, StoreService>();
+builder.Services.AddScoped<IChatService, ChatService>();
 
 builder.Services.AddSignalR();
 
@@ -80,7 +81,7 @@ app.UseEndpoints(endpoints =>
     );
 
     endpoints.MapHub<ChatHub>("/hubs/chat");
-
+    endpoints.MapHub<SupportHub>("/hubs/support");
 });
 
 //app.MapControllerRoute(
